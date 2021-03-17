@@ -42,8 +42,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.cockos.reaper"
-         FilePath = "/Applications/REAPER64.app">
+         FilePath = "/Users/manolo/Documents/ZHDK/DIVERSE_FAECHER/VSTProg/JUCE/extras/AudioPluginHost/Builds/MacOSX/build/Debug/AudioPluginHost.app">
       </PathRunnable>
    </LaunchAction>
    <ProfileAction
