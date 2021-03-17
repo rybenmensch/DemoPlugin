@@ -1,3 +1,3 @@
 ## DemoPlugin
 
-VST tests with JUICE
+VST tests with JUCE
