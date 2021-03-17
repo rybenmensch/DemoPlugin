@@ -153,15 +153,6 @@ void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
 
     for (int channel = 0; channel < totalNumOutputChannels; ++channel){
         auto* channelData = buffer.getWritePointer (channel);
-        int framesize = buffer.getNumSamples();
-        int n = framesize;
-        while(n--){
-            float randval = rand() / (float)RAND_MAX;
-            randval *= 0.5;
-            randval -= 0.5;
-            randval *= 2;
-            *channelData++ = 0.05*randval;
-        }
     }
 }
 
