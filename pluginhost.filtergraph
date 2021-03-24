@@ -61,7 +61,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="5" x="0.32875" y="0.5">
+  <FILTER uid="5" x="0.28125" y="0.2153846153846154">
     <PLUGIN name="Sine Wave Synth" format="Internal" category="Synth" manufacturer="JUCE"
             version="1.0.0" file="Sine Wave Synth" uid="16fd76a8" isInstrument="1"
             fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="2"
@@ -74,10 +74,10 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="7" x="0.5075" y="0.4519230769230769">
+  <FILTER uid="7" x="0.24625" y="0.3346153846153846">
     <PLUGIN name="DemoPlugin" format="VST3" category="Fx" manufacturer="mmmanolo"
             version="0.1" file="/Users/manolo/Documents/ZHDK/DIVERSE_FAECHER/VSTProg/JuceProjects/DemoPlugin/Builds/MacOSX/build/Debug/DemoPlugin.vst3"
-            uid="acf55555" isInstrument="0" fileTime="17840477728" infoUpdateTime="1784093f62f"
+            uid="acf55555" isInstrument="0" fileTime="17840477728" infoUpdateTime="178647bdc19"
             numInputs="0" numOutputs="0" isShell="0"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
     <LAYOUT>
@@ -92,5 +92,5 @@
   <CONNECTION srcFilter="2" srcChannel="4096" dstFilter="5" dstChannel="4096"/>
   <CONNECTION srcFilter="5" srcChannel="0" dstFilter="7" dstChannel="0"/>
   <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="0"/>
-  <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="1"/>
+  <CONNECTION srcFilter="7" srcChannel="1" dstFilter="3" dstChannel="1"/>
 </FILTERGRAPH>

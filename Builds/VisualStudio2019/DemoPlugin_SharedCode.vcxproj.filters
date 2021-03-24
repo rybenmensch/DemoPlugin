@@ -430,6 +430,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MainGui.cpp">
+      <Filter>DemoPlugin\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>DemoPlugin\Source</Filter>
     </ClCompile>
@@ -2484,6 +2487,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MainGui.h">
+      <Filter>DemoPlugin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>DemoPlugin\Source</Filter>
     </ClInclude>

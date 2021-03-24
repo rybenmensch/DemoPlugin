@@ -22,6 +22,7 @@ DemoPluginAudioProcessor::DemoPluginAudioProcessor()
                        )
 #endif
 {
+    runningvalue = 0;
 }
 
 DemoPluginAudioProcessor::~DemoPluginAudioProcessor(){
@@ -116,11 +117,12 @@ bool DemoPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
-void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
-{
+void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages){
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
+    int frames = buffer.getNumSamples();
+    float pi = MathConstants<float>::pi;
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -128,20 +130,31 @@ void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     // This is here to avoid people getting screaming feedback
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
+    
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
-
+        buffer.clear (i, 0, frames);
+     
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
     // Make sure to reset the state if your inner loop is processing
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    AudioBuffer<float> input(1, frames);
+    input.copyFrom(0, 0, buffer, 0, 0, frames);
+    const float* read = input.getReadPointer(0);
 
     for (int channel = 0; channel < totalNumOutputChannels; ++channel){
-        auto *boi = buffer.getReadPointer(channel);
-        //auto* channelData = buffer.getWritePointer (channel);
+        float additionalAngle = channel * pi * 0.5;
+        auto *channelData = buffer.getWritePointer(channel);
+
+        for(int i=0;i<frames;i++){
+            float factor = sin((runningvalue + i) / getSampleRate() * pi + additionalAngle);
+            channelData[i] = read[i] * factor;
+        }
     }
+    
+    runningvalue += frames;
 }
 
 //==============================================================================

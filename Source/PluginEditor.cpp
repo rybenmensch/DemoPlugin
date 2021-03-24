@@ -13,6 +13,9 @@
 DemoPluginAudioProcessorEditor::DemoPluginAudioProcessorEditor (DemoPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    mainGui = new MainGui();
+    
+    addAndMakeVisible(mainGui);
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -20,6 +23,7 @@ DemoPluginAudioProcessorEditor::DemoPluginAudioProcessorEditor (DemoPluginAudioP
 
 DemoPluginAudioProcessorEditor::~DemoPluginAudioProcessorEditor()
 {
+    delete mainGui;
 }
 
 //==============================================================================
@@ -37,4 +41,5 @@ void DemoPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+    mainGui->setBounds(getBounds());
 }
