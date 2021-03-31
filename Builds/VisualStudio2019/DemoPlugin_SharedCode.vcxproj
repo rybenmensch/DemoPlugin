@@ -2047,6 +2047,8 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PositionDisplay.h"/>
+    <ClInclude Include="..\..\Source\AudioParams.h"/>
     <ClInclude Include="..\..\Source\MainGui.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>

@@ -2487,6 +2487,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PositionDisplay.h">
+      <Filter>DemoPlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AudioParams.h">
+      <Filter>DemoPlugin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MainGui.h">
       <Filter>DemoPlugin\Source</Filter>
     </ClInclude>

@@ -6,6 +6,9 @@
               companyEmail="manolo@mmmanolo.com" pluginChannelConfigs="{1, 4}">
   <MAINGROUP id="teGFnP" name="DemoPlugin">
     <GROUP id="{B14D5779-2E67-BE8F-C983-9D454E77440E}" name="Source">
+      <FILE id="ZPVeb7" name="PositionDisplay.h" compile="0" resource="0"
+            file="Source/PositionDisplay.h"/>
+      <FILE id="Damx9Q" name="AudioParams.h" compile="0" resource="0" file="Source/AudioParams.h"/>
       <FILE id="GyGtsp" name="MainGui.h" compile="0" resource="0" file="Source/MainGui.h"/>
       <FILE id="esA5FY" name="MainGui.cpp" compile="1" resource="0" file="Source/MainGui.cpp"/>
       <FILE id="mnrLPq" name="PluginProcessor.cpp" compile="1" resource="0"

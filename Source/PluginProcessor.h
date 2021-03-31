@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "AudioParams.h"
 
 //==============================================================================
 /**
@@ -53,8 +54,9 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    //===============================MEMBERS========================================
+    AudioParams audioParams = {this};
 private:
-    int runningvalue;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DemoPluginAudioProcessor)
 };

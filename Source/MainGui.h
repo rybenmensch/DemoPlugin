@@ -21,6 +21,8 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include <JuceHeader.h>
+#include "AudioParams.h"
+#include "PositionDisplay.h"
 //[/Headers]
 
 
@@ -34,15 +36,33 @@
                                                                     //[/Comments]
 */
 class MainGui  : public juce::Component,
+                 public AudioProcessorParameter::Listener,
+                 public AsyncUpdater,
                  public juce::Button::Listener
 {
 public:
     //==============================================================================
-    MainGui ();
+    MainGui (AudioParams* pAudioParams);
     ~MainGui() override;
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void parameterValueChanged(int parameterIndex, float newValue) override
+    {
+        triggerAsyncUpdate();
+    }
+
+    void parameterGestureChanged(int parameterIndex, bool gestureIsStarting) override
+    {
+        //nothing to do.
+        //overriding just because we need to
+    }
+
+    void handleAsyncUpdate() override
+    {
+        updatePosition();
+    }
+
     //[/UserMethods]
 
     void paint (juce::Graphics& g) override;
@@ -53,10 +73,13 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    void updatePosition();
+    AudioParams* pParams;
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<juce::TextButton> juce__textButton;
+    std::unique_ptr<juce::TextButton> buttonAction;
+    std::unique_ptr<PositionDisplay> display;
 
 
     //==============================================================================

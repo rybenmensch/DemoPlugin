@@ -22,7 +22,8 @@ DemoPluginAudioProcessor::DemoPluginAudioProcessor()
                        )
 #endif
 {
-    runningvalue = 0;
+    //nothing else to be done in the constructor
+
 }
 
 DemoPluginAudioProcessor::~DemoPluginAudioProcessor(){
@@ -122,7 +123,6 @@ void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     int frames = buffer.getNumSamples();
-    float pi = MathConstants<float>::pi;
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -133,28 +133,40 @@ void DemoPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, frames);
-     
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
+    
     AudioBuffer<float> input(1, frames);
     input.copyFrom(0, 0, buffer, 0, 0, frames);
     const float* read = input.getReadPointer(0);
-
+   
+    /*ambisonics*/
+    // get snapshot of current AED coordinates and convert angles from degrees to radians
+    float pi = MathConstants<float>::pi;
+    float a = -audioParams.a->get() * pi / 180.0f; // our azimuth is in Navigation direction (clockwise), in mathematics we need conter-clock-wise!
+    float e = audioParams.e->get() * pi / 180.0f;
+    float d = audioParams.d->get();
+    
+    // calculate distance attenuations
+    float unitCircle = 0.1f;
+    float scaledDistance = jmax(unitCircle, d * (1.0f / unitCircle));
+    float distanceFactorW = atan(scaledDistance * pi / 2.0f) / (scaledDistance * pi / 2.0f);
+    float distanceFactorOthers = (1 - exp(-scaledDistance)) * distanceFactorW;
+    
+    // calculate ambisonics (B-format) factors
+    float ambiFactors[4];
+    ambiFactors[0] = distanceFactorW * 1.0f;
+    ambiFactors[1] = distanceFactorOthers * cos(e) * sin(a);
+    ambiFactors[2] = distanceFactorOthers * sin(e);
+    ambiFactors[3] = distanceFactorOthers * cos(e) * cos(a);
+    
     for (int channel = 0; channel < totalNumOutputChannels; ++channel){
-        float additionalAngle = channel * pi * 0.5;
+        
         auto *channelData = buffer.getWritePointer(channel);
 
         for(int i=0;i<frames;i++){
-            float factor = sin((runningvalue + i) / getSampleRate() * pi + additionalAngle);
+            float factor = ambiFactors[channel];
             channelData[i] = read[i] * factor;
         }
     }
-    
-    runningvalue += frames;
 }
 
 //==============================================================================

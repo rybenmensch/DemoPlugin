@@ -385,6 +385,13 @@
 			path = "Info-VST3.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		91F52B53125C608DD3906510 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PositionDisplay.h;
+			path = ../../Source/PositionDisplay.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9303207BC1C6FF8F0A566792 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -476,11 +483,25 @@
 			path = ../../Source/PluginEditor.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		C7747B95E6E8FFE6B2D9FB10 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_gui_basics.mm";
+			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		D78C11D2F7544F0FA4639498 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_plugin_client_AU_2.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		DA4240F47AC1B505D98D3612 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AudioParams.h;
+			path = ../../Source/AudioParams.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E866BDD41DDA37A51337D535 = {
@@ -510,13 +531,6 @@
 			includeInIndex = 0;
 			path = libDemoPlugin.a;
 			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		C7747B95E6E8FFE6B2D9FB10 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_gui_basics.mm";
-			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
-			sourceTree = "SOURCE_ROOT";
 		};
 		DBD93C384C970EAAD0CBA85F = {
 			isa = PBXFileReference;
@@ -577,6 +591,8 @@
 		C2D0CAEE6D1F2F350CD5F161 = {
 			isa = PBXGroup;
 			children = (
+				91F52B53125C608DD3906510,
+				DA4240F47AC1B505D98D3612,
 				180B80C0DC6680741A1DED66,
 				58C55257E0A0B6995B0F04FD,
 				51AFD7541E3469B94A5ADEEF,

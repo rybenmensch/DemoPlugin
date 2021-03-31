@@ -13,9 +13,9 @@
 DemoPluginAudioProcessorEditor::DemoPluginAudioProcessorEditor (DemoPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    mainGui = new MainGui();
+    mainGui.reset(new MainGui(&p.audioParams));
     
-    addAndMakeVisible(mainGui);
+    addAndMakeVisible(mainGui.get());
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -23,7 +23,7 @@ DemoPluginAudioProcessorEditor::DemoPluginAudioProcessorEditor (DemoPluginAudioP
 
 DemoPluginAudioProcessorEditor::~DemoPluginAudioProcessorEditor()
 {
-    delete mainGui;
+
 }
 
 //==============================================================================
